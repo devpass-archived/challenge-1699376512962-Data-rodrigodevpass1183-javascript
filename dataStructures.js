@@ -7,55 +7,94 @@ class Node {
 
 class Stack {
   constructor() {
-    // Add your solution here!
+    this.topNode = null;
   }
 
   push(data) {
-    // Add your solution here!
+    const newNode = new Node(data);
+    newNode.next = this.topNode;
+    this.topNode = newNode;
   }
 
   pop() {
-    // Add your solution here!
+    if (this.topNode) {
+      this.topNode = this.topNode.next;
+    }
   }
 
   top() {
-    // Add your solution here!
+    return this.topNode ? this.topNode.data : null;
   }
 }
 
 class Queue {
   constructor() {
-    // Add your solution here!
+    this.frontNode = null;
+    this.rearNode = null;
   }
 
   enqueue(data) {
-    // Add your solution here!
+    const newNode = new Node(data);
+    if (!this.frontNode) {
+      this.frontNode = newNode;
+      this.rearNode = newNode;
+    } else {
+      this.rearNode.next = newNode;
+      this.rearNode = newNode;
+    }
   }
 
   dequeue() {
-    // Add your solution here!
+    if (this.frontNode) {
+      this.frontNode = this.frontNode.next;
+    }
   }
 
   front() {
-    // Add your solution here!
+    return this.frontNode ? this.frontNode.data : null;
   }
 }
 
 class LinkedList {
   constructor() {
-    // Add your solution here!
+    this.headNode = null;
   }
 
   append(data) {
-    // Add your solution here!
+    const newNode = new Node(data);
+    if (!this.headNode) {
+      this.headNode = newNode;
+    } else {
+      let current = this.headNode;
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = newNode;
+    }
   }
 
   delete(data) {
-    // Add your solution here!
+    if (!this.headNode) {
+      return;
+    }
+
+    if (this.headNode.data === data) {
+      this.headNode = this.headNode.next;
+      return;
+    }
+
+    let current = this.headNode;
+    while (current.next) {
+      if (current.next.data === data) {
+        current.next = current.next.next;
+        return;
+      }
+      current = current.next;
+    }
   }
 
   head() {
-    // Add your solution here!
+    return this.headNode ? this.headNode.data : null;
   }
 }
 
